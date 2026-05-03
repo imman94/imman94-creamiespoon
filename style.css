@@ -1310,3 +1310,284 @@ body.popup-open {
     margin-top: 20px;
   }
 }
+/* ===== INSTAGRAM SECTION IMAGE ===== */
+.insta-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.insta-left {
+  flex: 1;
+}
+
+.insta-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.insta-right img {
+  width: 100%;
+  max-width: 420px;
+
+  border-radius: 0;              /* remove edges */
+  box-shadow: none;              /* remove card look */
+
+  /* Fade edges smoothly */
+  mask-image: radial-gradient(circle at center, black 65%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at center, black 65%, transparent 100%);
+
+  /* Slight softness */
+  filter: brightness(1.05) contrast(1.05);
+
+}
+/* ===== INSTAGRAM GRADIENT BACKGROUND ===== */
+.instagram-feed {
+  background: linear-gradient(
+    135deg,
+    #feda75,
+    #fa7e1e,
+    #d62976,
+    #962fbf,
+    #4f5bd5
+  );
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft overlay for readability */
+.instagram-feed::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  z-index: 1;
+}
+
+/* Keep content above overlay */
+.instagram-feed .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Text color adjustment */
+.instagram-feed h2,
+.instagram-feed p {
+  color: white;
+}
+
+/* Button tweak for contrast */
+.instagram-feed .btn {
+  background: white;
+  color: #d62976;
+  border: none;
+}
+
+.instagram-feed .btn:hover {
+  background: #fff3f7;
+  color: #962fbf;
+}
+.instagram-feed::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(255,255,255,0.2);
+  filter: blur(100px);
+  top: -50px;
+  right: -50px;
+}
+/* ===== INSTAGRAM IMAGE FLOAT ANIMATION ===== */
+.insta-right img {
+  animation: instaFloat 5s ease-in-out infinite;
+}
+
+/* Smooth floating motion */
+@keyframes instaFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-12px) scale(1.02);
+  }
+}
+/* ===== INSTAGRAM MOBILE OPTIMIZATION ===== */
+@media (max-width: 768px) {
+
+  .insta-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .insta-left {
+    order: 1;
+  }
+
+  .insta-right {
+    order: 2;
+    display: flex;
+    justify-content: center;
+  }
+
+  .insta-right img {
+    width: 80%;
+    max-width: 260px;
+
+    /* softer fade for mobile */
+    mask-image: radial-gradient(circle at center, black 75%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle at center, black 75%, transparent 100%);
+
+    /* smoother animation (less movement on mobile) */
+    animation: instaFloatMobile 6s ease-in-out infinite;
+  }
+
+  @keyframes instaFloatMobile {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  /* Text spacing */
+  .insta-left h2 {
+    font-size: 1.8rem;
+  }
+
+  .insta-left p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+
+  /* Button spacing */
+  .insta-left .btn {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ===== SOFT COLORFUL BACKGROUNDS ===== */
+
+/* About */
+.about {
+  background: linear-gradient(135deg, #fffaf3, #fff3e0);
+}
+
+/* Why Choose */
+.why-choose {
+  background: linear-gradient(135deg, #fff8f0, #ffe0b2);
+}
+
+/* Flavors */
+.flavors {
+  background: linear-gradient(135deg, #fff5f7, #ffe4ec);
+}
+
+/* Menu */
+.menu {
+  background: linear-gradient(135deg, #fff8f2, #ffe8d6);
+}
+
+/* Testimonials */
+.testimonials {
+  background: linear-gradient(135deg, #fff9f5, #ffe0cc);
+}
+
+/* FAQ */
+.faq {
+  background: linear-gradient(135deg, #fffdf5, #fff3cd);
+}
+.section {
+  position: relative;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+/* ===== PREMIUM DESSERT GRADIENT THEME ===== */
+
+/* About (Cream + Mango soft) */
+.about {
+  background: linear-gradient(
+    135deg,
+    #fffdf8 0%,
+    #fff3d6 40%,
+    #ffe8b5 100%
+  );
+}
+
+/* Why Choose (Warm creamy orange glow) */
+.why-choose {
+  background: linear-gradient(
+    135deg,
+    #fffaf5 0%,
+    #ffe6c7 50%,
+    #ffd8a8 100%
+  );
+}
+
+/* Flavors (Strawberry + Cream) */
+.flavors {
+  background: linear-gradient(
+    135deg,
+    #fff5f7 0%,
+    #ffe0ea 40%,
+    #ffd1dc 100%
+  );
+}
+
+/* Menu (Mango + Light caramel) */
+.menu {
+  background: linear-gradient(
+    135deg,
+    #fff8f0 0%,
+    #ffe2c2 50%,
+    #ffd2a1 100%
+  );
+}
+
+/* Testimonials (Soft warm cream) */
+.testimonials {
+  background: linear-gradient(
+    135deg,
+    #fffaf6 0%,
+    #ffe9d6 50%,
+    #ffddc4 100%
+  );
+}
+
+/* FAQ (Light lemon freshness) */
+.faq {
+  background: linear-gradient(
+    135deg,
+    #fffef7 0%,
+    #fff5cc 50%,
+    #ffeaa7 100%
+  );
+}
+.section {
+  position: relative;
+}
+
+.section::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(255,255,255,0.3);
+  filter: blur(80px);
+  top: -50px;
+  right: -50px;
+  pointer-events: none;
+}
