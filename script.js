@@ -28,10 +28,10 @@ const menuData = [
   {
     name: "Combo Pack",
     desc: "All 3 Flavors (100gms each)",
-    price: 200,
-    img: "assets/menu.jpg",
+    price: 249,
+    img: "assets/combo_pak.PNG",
     highlight: true,
-    discount: "Save ₹20"
+    discount: "Save ₹51"
   }
 ];
 

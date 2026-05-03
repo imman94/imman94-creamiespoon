@@ -25,6 +25,7 @@ body {
   background-color: var(--light-bg);
   color: var(--text-dark);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 .container {
@@ -109,14 +110,16 @@ body {
 
 /* ===== HERO SECTION ===== */
 .hero {
-  height: 100vh;
-  padding-top: 80px;
+  /* min-height: 100vh;
+  padding-top: 80px; */
+  height: calc(100vh - 80px); /* subtract navbar */
+  padding-top: 0;             /* remove extra push */
   background: url('assets/logo-bg.png') right center / 55% no-repeat,
               linear-gradient(135deg, #fffaf3, #fff);
   background-attachment: fixed;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center !important;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -973,9 +976,6 @@ body {
     grid-template-columns: 1fr;
   }
 }
-.hero-content {
-  padding-top: 120px; /* pushes content down */
-}
 
 .hero-buttons {
   margin-top: 50px; /* more spacing from center */
@@ -1078,7 +1078,7 @@ body.popup-open {
 }
 
 .hero-buttons {
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .menu-card,
@@ -1153,14 +1153,15 @@ body.popup-open {
   margin-bottom: 25px;
 }
 .hero {
-  background-image: none !important;
-  justify-content: flex-start !important;
-  padding-left: 5%;
+   background-image: none !important;
+  justify-content: center !important; /* center content */
+  /* padding-left: 5%; */
 }
 
 /* Layout */
 .hero-container {
-  max-width: 1300px;
+  max-width: 1200px;
+  padding: 0 20px;   /* keep consistent spacing */
   margin: auto;
   display: flex;
   align-items: center;
@@ -1183,7 +1184,7 @@ body.popup-open {
   position: relative;
   z-index: 2;
   max-width: 600px;
-  padding: 40px 50px;
+  padding: 20px 30px;
   border-radius: 24px;
 }
 
@@ -1216,8 +1217,8 @@ body.popup-open {
 
 /* FLOAT */
 @keyframes floatImage {
-  0%,100% { transform: translateY(0) scale(1.25); }
-  50% { transform: translateY(-20px) scale(1.25); }
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }
 
 /* GLOW (bigger now) */
@@ -1271,7 +1272,7 @@ body.popup-open {
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center !important;
     text-align: center;
 
     position: relative;
