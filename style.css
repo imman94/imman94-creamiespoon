@@ -1176,7 +1176,7 @@ body.popup-open {
 }
 
 /* LEFT SIDE (fill space better) */
-.hero-left {
+.hero-left { 
   flex: 1;
   max-width: 550px;
   padding-right: 40px; /* creates space from image */

@@ -89,7 +89,7 @@ function scrollToMenu() {
       behavior: "smooth",
       block: "start"
     });
-  }
+  } 
 }
 
 function scrollToContact() {
