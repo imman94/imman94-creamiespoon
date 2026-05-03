@@ -1254,3 +1254,59 @@ body.popup-open {
     transform: none;
   }
 }
+/* ===== MOBILE HERO: FULL BG + BLUR ===== */
+@media (max-width: 768px) {
+
+  /* Remove split image */
+  .hero-right {
+    display: none !important;
+  }
+
+  /* Full background image */
+  .hero {
+    height: 100vh !important;
+    padding: 80px 20px 40px;
+
+    background: url('assets/logo-bg.png') center / cover no-repeat !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    position: relative;
+  }
+
+  /* Blur overlay */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+
+    background: rgba(255, 250, 243, 0.65);
+    backdrop-filter: blur(0px);
+
+    z-index: 1;
+  }
+
+  /* Content above blur */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 10px;
+  }
+
+  /* Improve text readability */
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  /* Buttons spacing */
+  .hero-buttons {
+    margin-top: 20px;
+  }
+}
