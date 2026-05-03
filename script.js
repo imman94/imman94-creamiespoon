@@ -2,34 +2,42 @@
 const menuData = [
   {
     name: "Mango Custard",
-    desc: "100gms Fresh Mango",
+    desc: "Fresh Mango",
     price: 70,
     img: "assets/mango_c.PNG",
-    //tag: "🔥 Bestseller"
+    discount: "🔥 Bestseller"
   },
   {
     name: "Strawberry Custard",
-    desc: "100gms Fresh Strawberry",
+    desc: "Fresh Strawberry",
     price: 70,
     img: "assets/strawberry_c.PNG"
   },
   {
     name: "Kesar Pista Custard",
-    desc: "100gms Premium Saffron & Pistachio",
+    desc: "Premium Saffron & Pistachio",
     price: 80,
     img: "assets/kesarP_c.PNG"
   },
   {
-    name: "Buttercotch Custard",
-    desc: "100gms Rich & Creamy Buttercotch",
+    name: "Butterscotch Custard",
+    desc: "Rich & Creamy Buttercotch",
     price: 80,
     img: "assets/buttercotch_c.PNG"
   },
   {
-    name: "Combo Pack",
-    desc: "All 3 Flavors (100gms each)",
+    name: "The Ultimate Combo Pack",
+    desc: "Two Mango Custards paired with Strawberry and Kesar Pista, perfectly balanced blend of fruity, creamy & royal indulgence.",
     price: 249,
     img: "assets/combo_pak.PNG",
+    highlight: true,
+    discount: "Save ₹51"
+  },
+  {
+    name: "The 4 in 1 Bucket Combo Pack",
+    desc: "Can’t pick one? Get all four! A curated blend of Mango, Kesar Pista, Butterscotch & Strawberry Crafted for the perfect balance of flavor and indulgence.",
+    price: 259,
+    img: "assets/4_in_1_combo_pack.png",
     highlight: true,
     discount: "Save ₹51"
   }
@@ -418,3 +426,28 @@ closePopup.addEventListener("click", closePopupFunc);
 popup.addEventListener("click", (e) => {
   if (e.target === popup) closePopupFunc();
 });
+
+function sendWhatsApp() {
+  const name = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
+  const message = document.getElementById("message").value;
+
+  if (!name || !phone) {
+    alert("Please fill Name and Phone");
+    return;
+  }
+
+  const text = `Hi 👋
+
+Name: ${name}
+Phone: ${phone}
+
+Message:
+${message}
+
+I want to know more about your custards 🍨`;
+
+  const url = `https://wa.me/918240320833?text=${encodeURIComponent(text)}`;
+
+  window.open(url, "_blank");
+} 

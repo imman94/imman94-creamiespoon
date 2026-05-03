@@ -159,11 +159,11 @@
           <h3>Fresh Daily</h3>
           <p>Made fresh every morning. Same-day delivery available.</p>
         </div>
-        <div class="feature-card">
+        <!-- <div class="feature-card">
           <i class="fas fa-truck"></i>
           <h3>Quick Delivery</h3>
           <p>Fast delivery across Kolkata. Bulk orders welcome.</p>
-        </div>
+        </div> -->
         <div class="feature-card">
           <i class="fas fa-star"></i>
           <h3>Loved by Many</h3>
@@ -204,10 +204,10 @@
         </div>
         <div class="flavor-card">
           <div class="flavor-image">
-            <img src="assets/buttercotch_c.PNG" alt="Buttercotch Custard" loading="lazy">
+            <img src="assets/buttercotch_c.PNG" alt="Butterscotch Custard" loading="lazy">
           </div>
-          <h3>Buttercotch Custard</h3>
-          <p>Rich and creamy buttercotch flavor with a hint of vanilla.</p>
+          <h3>Butterscotch Custard</h3>
+          <p>Rich and creamy butterscotch flavor with a hint of vanilla.</p>
           <span class="badge">Coming Soon</span>
         </div>
       </div>
@@ -218,52 +218,10 @@
   <section id="menu" class="menu section">
     <div class="container">
       <h2>Our Menu & Pricing</h2>
-
-      <!-- <div class="pricing-table">
-        <div class="menu-card">
-          <img src="assets/mango_c.PNG" alt="Mango Custard" loading="lazy">
-          <h3>Mango Custard</h3>
-          <p>100gms Fresh Mango</p>
-          <div class="price">₹70</div>
-          <button class="btn btn-primary" onclick="order('Mango Custard - 100gms', 70)">Add to Order</button>
-        </div>
-
-        <div class="menu-card">
-          <img src="assets/strawberry_c.PNG" alt="Strawberry Custard" loading="lazy">
-          <h3>Strawberry Custard</h3>
-          <p>100gms Fresh Strawberry</p>
-          <div class="price">₹70</div>
-          <button class="btn btn-primary" onclick="order('Strawberry Custard - 100gms', 70)">Add to Order</button>
-        </div>
-
-        <div class="menu-card">
-          <img src="assets/kesarP_c.PNG" alt="Kesar Pista Custard" loading="lazy">
-          <h3>Kesar Pista Custard</h3>
-          <p>100gms Premium Saffron & Pistachio</p>
-          <div class="price">₹80</div>
-          <button class="btn btn-primary" onclick="order('Kesar Pista Custard - 100gms', 100)">Add to Order</button>
-        </div>
-
-        <div class="menu-card">
-          <img src="assets/buttercotch_c.PNG" alt="Buttercotch Custard" loading="lazy">
-          <h3>Buttercotch Custard</h3>
-          <p>100gms Rich & Creamy Buttercotch</p>
-          <div class="price">₹80</div>
-          <button class="btn btn-primary" onclick="order('Buttercotch Custard - 100gms', 80)">Add to Order</button>
-        </div>
-
-        <div class="menu-card highlight">
-          <img src="assets/menu.jpg" alt="Combo Pack" loading="lazy">
-          <h3>Combo Pack</h3>
-          <p>All 3 Flavors (100gms each)</p>
-          <div class="price">₹200 <span class="discount">Save ₹20</span></div>         
-          <button class="btn btn-primary" onclick="order('Combo Pack - All 3 Flavors', 220)">Add to Order</button>
-        </div>
-      </div> -->
       <div class="pricing-table" id="menuContainer"></div>
 
       <div class="bulk-section">
-        <h3>🎉 Bulk Orders & Catering</h3>
+        <h3>Bulk Orders & Catering</h3>
         <p>Special rates for weddings, events, and corporate orders</p>
         <button class="btn btn-secondary" onclick="scrollToContact()">Request Quote</button>
       </div>
@@ -404,7 +362,7 @@
           </div>
         </div>
 
-        <form class="contact-form" id="contactForm">
+        <!-- <form class="contact-form" id="contactForm">
           <h3>Send us a Message</h3>
           <input type="text" placeholder="Your Name" required>
           <input type="email" placeholder="Your Email" required>
@@ -412,7 +370,20 @@
           <textarea placeholder="Your Message" rows="5" required></textarea>
           <button type="submit" class="btn btn-primary">Send Message</button>
           <p class="form-note">We'll respond within 2 hours during business hours.</p>
-        </form>
+        </form> -->
+        <div class="contact-form">
+  <h3>Send Us a Message</h3>
+
+  <input type="text" id="name" placeholder="Your Name" required>
+  <input type="text" id="phone" placeholder="Your Phone Number" required>
+  <textarea id="message" rows="4" placeholder="Your Message"></textarea>
+
+  <button class="btn btn-primary" onclick="sendWhatsApp()">
+    💬 Send via WhatsApp
+  </button>
+
+  <p class="form-note">We usually reply within minutes on WhatsApp</p>
+</div>
       </div>
     </div>
   </section>

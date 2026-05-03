@@ -490,7 +490,7 @@ body {
   color: var(--primary-color);
 }
 
-.discount {
+/* .discount {
   display: inline-block;
   background: #4caf50;
   color: white;
@@ -499,6 +499,55 @@ body {
   font-size: 0.8rem;
   margin-right: 20px;
   font-weight: 600;
+} */
+
+/* ===== PREMIUM DISCOUNT BADGE ===== */
+.discount {
+  display: inline-block;
+
+  background: linear-gradient(135deg, #c70000, #ff9800);
+  color: white;
+
+  padding: 6px 14px;
+  border-radius: 20px;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+
+  box-shadow: 0 4px 12px rgba(255, 82, 82, 0.4);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shine effect */
+.discount::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+
+  transition: 0.6s;
+}
+
+/* Hover shine */
+.discount:hover::before {
+  left: 100%;
+}
+
+/* Slight hover pop */
+.discount:hover {
+  transform: scale(1.05);
 }
 
 .menu-card .btn {
@@ -1256,59 +1305,21 @@ body.popup-open {
   }
 }
 /* ===== MOBILE HERO: FULL BG + BLUR ===== */
+/* ===== FIX MOBILE HERO SCROLL ===== */
 @media (max-width: 768px) {
 
-  /* Remove split image */
-  .hero-right {
-    display: none !important;
-  }
-
-  /* Full background image */
   .hero {
-    height: 100vh !important;
-    padding: 80px 20px 40px;
-
-    background: url('assets/logo-bg.png') center / cover no-repeat !important;
-
-    display: flex;
-    align-items: center;
-    justify-content: center !important;
-    text-align: center;
-
-    position: relative;
+    height: calc(100vh - 60px) !important; /* subtract navbar */
+    padding: 20px !important;              /* remove extra height */
+    overflow: hidden;
   }
 
-  /* Blur overlay */
-  .hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-
-    background: rgba(255, 250, 243, 0.65);
-    backdrop-filter: blur(0px);
-
-    z-index: 1;
-  }
-
-  /* Content above blur */
   .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 10px;
+    padding: 0 !important;
   }
 
-  /* Improve text readability */
-  .hero-content h1 {
-    font-size: 2.2rem;
-  }
-
-  .hero-content p {
-    font-size: 1rem;
-  }
-
-  /* Buttons spacing */
   .hero-buttons {
-    margin-top: 20px;
+    margin-top: 15px !important;
   }
 }
 /* ===== INSTAGRAM SECTION IMAGE ===== */
