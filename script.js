@@ -1,3 +1,69 @@
+// ===== MENU DATA (SCALABLE) =====
+const menuData = [
+  {
+    name: "Mango Custard",
+    desc: "100gms Fresh Mango",
+    price: 70,
+    img: "assets/mango_c.PNG",
+    //tag: "🔥 Bestseller"
+  },
+  {
+    name: "Strawberry Custard",
+    desc: "100gms Fresh Strawberry",
+    price: 70,
+    img: "assets/strawberry_c.PNG"
+  },
+  {
+    name: "Kesar Pista Custard",
+    desc: "100gms Premium Saffron & Pistachio",
+    price: 80,
+    img: "assets/kesarP_c.PNG"
+  },
+  {
+    name: "Buttercotch Custard",
+    desc: "100gms Rich & Creamy Buttercotch",
+    price: 80,
+    img: "assets/buttercotch_c.PNG"
+  },
+  {
+    name: "Combo Pack",
+    desc: "All 3 Flavors (100gms each)",
+    price: 200,
+    img: "assets/menu.jpg",
+    highlight: true,
+    discount: "Save ₹20"
+  }
+];
+
+// ===== RENDER MENU =====
+function renderMenu() {
+  const container = document.getElementById("menuContainer");
+  if (!container) return;
+
+  container.innerHTML = menuData.map(item => `
+    <div class="menu-card ${item.highlight ? 'highlight' : ''}">
+      ${item.tag ? `<span class="tag">${item.tag}</span>` : ""}
+      <img src="${item.img}" alt="${item.name}" loading="lazy">
+      <h3>${item.name}</h3>
+      <p>${item.desc}</p>
+      <div class="price">
+        ₹${item.price}
+        ${item.discount ? `<span class="discount">${item.discount}</span>` : ""}
+      </div>
+      <button class="btn btn-primary" onclick="order('${item.name}', ${item.price})">
+        Add to Order
+      </button>
+    </div>
+  `).join('');
+}
+
+// CALL ON LOAD
+document.addEventListener("DOMContentLoaded", () => {
+  renderMenu();
+  updateImages(); // important for popup
+});
+
+
 // ===== MOBILE MENU TOGGLE =====
 const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
@@ -225,3 +291,130 @@ scrollTopButton.addEventListener('mouseout', function() {
 
 
 
+
+// ===== ADVANCED IMAGE POPUP (GALLERY + SWIPE + PINCH) =====
+const popup = document.getElementById("imagePopup");
+const popupImg = document.getElementById("popupImg");
+const closePopup = document.querySelector(".close-popup");
+
+let images = [];
+
+function updateImages() {
+  images = document.querySelectorAll(".flavor-image img, .menu-card img");
+
+  images.forEach((img, index) => {
+    img.style.cursor = "pointer";
+
+    img.onclick = function () {
+      currentIndex = index;
+      showImage();
+      popup.classList.add("active");
+      document.body.classList.add("popup-open");
+    };
+  });
+}
+let currentIndex = 0;
+
+// OPEN POPUP
+images.forEach((img, index) => {
+  img.style.cursor = "pointer";
+
+  img.addEventListener("click", function () {
+    currentIndex = index;
+    showImage();
+    popup.classList.add("active");
+    document.body.classList.add("popup-open");
+  });
+});
+
+function showImage() {
+  popupImg.src = images[currentIndex].src;
+}
+
+// ===== SWIPE (MOBILE) =====
+let startX = 0;
+
+popup.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+});
+
+popup.addEventListener("touchend", (e) => {
+  let endX = e.changedTouches[0].clientX;
+
+  if (startX - endX > 50) {
+    nextImage();
+  } else if (endX - startX > 50) {
+    prevImage();
+  }
+});
+
+function nextImage() {
+  currentIndex = (currentIndex + 1) % images.length;
+  showImage();
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  showImage();
+}
+
+
+// ===== DESKTOP ARROW NAV =====
+document.addEventListener("keydown", (e) => {
+  if (!popup.classList.contains("active")) return;
+
+  if (e.key === "ArrowRight") nextImage();
+  if (e.key === "ArrowLeft") prevImage();
+  if (e.key === "Escape") closePopupFunc();
+});
+
+// ===== PINCH ZOOM (MOBILE) =====
+let scale = 1;
+let startDist = 0;
+
+popupImg.addEventListener("touchstart", (e) => {
+  if (e.touches.length === 2) {
+    startDist = getDistance(e.touches);
+  }
+});
+
+popupImg.addEventListener("touchmove", (e) => {
+  if (e.touches.length === 2) {
+    let newDist = getDistance(e.touches);
+    scale = Math.min(Math.max(1, scale * (newDist / startDist)), 3);
+    popupImg.style.transform = `scale(${scale})`;
+    startDist = newDist;
+  }
+});
+
+function getDistance(touches) {
+  return Math.hypot(
+    touches[0].clientX - touches[1].clientX,
+    touches[0].clientY - touches[1].clientY
+  );
+}
+
+// RESET ZOOM WHEN IMAGE CHANGES
+function resetZoom() {
+  scale = 1;
+  popupImg.style.transform = "scale(1)";
+}
+
+// MODIFY showImage
+function showImage() {
+  popupImg.src = images[currentIndex].src;
+  resetZoom();
+}
+
+// ===== CLOSE =====
+function closePopupFunc() {
+  popup.classList.remove("active");
+  document.body.classList.remove("popup-open");
+  resetZoom();
+}
+
+closePopup.addEventListener("click", closePopupFunc);
+
+popup.addEventListener("click", (e) => {
+  if (e.target === popup) closePopupFunc();
+});
