@@ -2,26 +2,26 @@
 const menuData = [
   {
     name: "Mango Custard",
-    desc: "Fresh Mango",
+    desc: "Rich, creamy custard blended with real mango goodness—smooth, refreshing, and irresistibly delicious in every spoon.",
     price: 70,
     img: "assets/mango_c.PNG",
     discount: "🔥 Bestseller"
   },
   {
     name: "Strawberry Custard",
-    desc: "Fresh Strawberry",
+    desc: "Fresh, juicy strawberries blended into a creamy custard—perfect for summer days.",
     price: 70,
     img: "assets/strawberry_c.PNG"
   },
   {
     name: "Kesar Pista Custard",
-    desc: "Premium Saffron & Pistachio",
+    desc: "Rich, creamy custard infused with aromatic saffron and crunchy pistachios—smooth, royal, and irresistibly indulgent in every spoon.",
     price: 80,
     img: "assets/kesarP_c.PNG"
   },
   {
     name: "Butterscotch Custard",
-    desc: "Rich & Creamy Buttercotch",
+    desc: "Creamy caramel custard with crunchy butterscotch—sweet, rich, and delightful in every bite.",
     price: 80,
     img: "assets/buttercotch_c.PNG"
   },
@@ -39,7 +39,7 @@ const menuData = [
     price: 259,
     img: "assets/4_in_1_combo_pack.png",
     highlight: true,
-    discount: "Save ₹51"
+    discount: "Save ₹41"
   }
 ];
 

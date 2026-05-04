@@ -113,7 +113,7 @@ body {
   /* min-height: 100vh;
   padding-top: 80px; */
   height: calc(100vh - 80px); /* subtract navbar */
-  padding-top: 0;             /* remove extra push */
+  padding-top: 5%;             /* remove extra push */
   background: url('assets/logo-bg.png') right center / 55% no-repeat,
               linear-gradient(135deg, #fffaf3, #fff);
   background-attachment: fixed;
