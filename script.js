@@ -4,32 +4,32 @@ const menuData = [
     name: "Mango Custard",
     desc: "Rich, creamy custard blended with real mango goodness—smooth, refreshing, and irresistibly delicious in every spoon.",
     price: 70,
-    img: "assets/mango_c.PNG",
+    img: "assets/mango_c.webp",
     discount: "🔥 Bestseller"
   },
   {
     name: "Strawberry Custard",
     desc: "Fresh, juicy strawberries blended into rich creamy, refreshing, and bursting with fruity flavor, perfect for every craving.",
     price: 70,
-    img: "assets/strawberry_c.PNG"
+    img: "assets/strawberry_c.webp"
   },
   {
     name: "Kesar Pista Custard",
     desc: "Rich, creamy custard with aromatic saffron and crunchy pistachios—smooth, royal, and irresistibly indulgent in every spoon.",
     price: 80,
-    img: "assets/kesarP_c.PNG"
+    img: "assets/kesarP_c.webp"
   },
   {
     name: "Butterscotch Custard",
     desc: "Creamy caramel custard with crunchy butterscotch—sweet, rich, and delightful in every bite.",
     price: 80,
-    img: "assets/buttercotch_c.PNG"
+    img: "assets/buttercotch_c.webp"
   },
   {
     name: "The Ultimate Combo Pack",
     desc: "Two Mango Custards paired with Strawberry and Kesar Pista, perfectly balanced blend of fruity, creamy & royal indulgence.",
     price: 249,
-    img: "assets/combo_pak.PNG",
+    img: "assets/combo_pak.webp",
     highlight: true,
     discount: "Save ₹51"
   },
@@ -37,7 +37,7 @@ const menuData = [
     name: "The 4 in 1 Bucket Combo Pack",
     desc: "Can’t pick one? Get all four! A curated blend of Mango, Kesar Pista, Butterscotch & Strawberry Crafted for the perfect balance of flavor and indulgence.",
     price: 259,
-    img: "assets/4_in_1_combo_pack.png",
+    img: "assets/4_in_1_combo_pack.webp",
     highlight: true,
     discount: "Save ₹41"
   }
