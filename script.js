@@ -344,7 +344,7 @@ let startX = 0;
 
 popup.addEventListener("touchstart", (e) => {
   startX = e.touches[0].clientX;
-});
+}, { passive: true });
 
 popup.addEventListener("touchend", (e) => {
   let endX = e.changedTouches[0].clientX;
@@ -354,7 +354,7 @@ popup.addEventListener("touchend", (e) => {
   } else if (endX - startX > 50) {
     prevImage();
   }
-});
+}, { passive: true });
 
 function nextImage() {
   currentIndex = (currentIndex + 1) % images.length;
@@ -384,7 +384,7 @@ popupImg.addEventListener("touchstart", (e) => {
   if (e.touches.length === 2) {
     startDist = getDistance(e.touches);
   }
-});
+}, { passive: true });
 
 popupImg.addEventListener("touchmove", (e) => {
   if (e.touches.length === 2) {
@@ -393,7 +393,7 @@ popupImg.addEventListener("touchmove", (e) => {
     popupImg.style.transform = `scale(${scale})`;
     startDist = newDist;
   }
-});
+}, { passive: true });
 
 function getDistance(touches) {
   return Math.hypot(
