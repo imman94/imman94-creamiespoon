@@ -9,13 +9,13 @@ const menuData = [
   },
   {
     name: "Strawberry Custard",
-    desc: "Fresh, juicy strawberries blended into a creamy custard—perfect for summer days.",
+    desc: "Fresh, juicy strawberries blended into rich creamy, refreshing, and bursting with fruity flavor, perfect for every craving.",
     price: 70,
     img: "assets/strawberry_c.PNG"
   },
   {
     name: "Kesar Pista Custard",
-    desc: "Rich, creamy custard infused with aromatic saffron and crunchy pistachios—smooth, royal, and irresistibly indulgent in every spoon.",
+    desc: "Rich, creamy custard with aromatic saffron and crunchy pistachios—smooth, royal, and irresistibly indulgent in every spoon.",
     price: 80,
     img: "assets/kesarP_c.PNG"
   },
