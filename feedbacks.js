@@ -45,6 +45,9 @@ async function loadTestimonials() {
 
         latestReviews.forEach(item => {
 
+            if (!item['Can we feature your review on our website?'] || item['Can we feature your review on our website?'].toLowerCase() !== 'no') {
+                           
+
             const name =
                 item['Name '] || "Anonymous Customer";
 
@@ -67,6 +70,10 @@ async function loadTestimonials() {
             testimonial.innerHTML = `
 
                 <span class="review-stars">
+                ${item['Which flavour did you try?'] || "Unknown Flavour"}
+                </span>
+
+                <span class="review-stars">
                 ${stars}
                 </span>
 
@@ -83,8 +90,8 @@ async function loadTestimonials() {
                 </span>
 
             `;
-
             container.appendChild(testimonial);
+        }
         });
 
     } catch (error) {

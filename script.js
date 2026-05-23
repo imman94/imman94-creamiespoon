@@ -77,7 +77,7 @@ const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
 
 if (menuToggle) {
-  menuToggle.addEventListener('click', function() {
+  menuToggle.addEventListener('click', function () {
     navMenu.classList.toggle('active');
   });
 }
@@ -97,7 +97,7 @@ function scrollToMenu() {
       behavior: "smooth",
       block: "start"
     });
-  } 
+  }
 }
 
 function scrollToContact() {
@@ -143,7 +143,7 @@ function trackInsta() {
 // ===== CONTACT FORM HANDLING =====
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-  contactForm.addEventListener('submit', function(e) {
+  contactForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
     // Get form values
@@ -177,7 +177,7 @@ if (contactForm) {
 }
 
 // ===== PAGE LOAD ANIMATIONS =====
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   // Fade in elements on load
   const elements = document.querySelectorAll('.section, .hero, .menu-card, .feature-card');
   elements.forEach((el, index) => {
@@ -195,7 +195,7 @@ const observerOptions = {
   rootMargin: '0px 0px -100px 0px'
 };
 
-const observer = new IntersectionObserver(function(entries) {
+const observer = new IntersectionObserver(function (entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.style.opacity = '1';
@@ -241,7 +241,7 @@ function formatPhoneNumber(input) {
 
 // Apply formatter to phone inputs
 document.querySelectorAll('input[type="tel"]').forEach(input => {
-  input.addEventListener('input', function() {
+  input.addEventListener('input', function () {
     formatPhoneNumber(this);
   });
 });
@@ -270,7 +270,7 @@ scrollTopButton.style.cssText = `
 
 document.body.appendChild(scrollTopButton);
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
   if (window.pageYOffset > 300) {
     scrollTopButton.style.display = 'flex';
     scrollTopButton.style.alignItems = 'center';
@@ -280,19 +280,19 @@ window.addEventListener('scroll', function() {
   }
 });
 
-scrollTopButton.addEventListener('click', function() {
+scrollTopButton.addEventListener('click', function () {
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
   });
 });
 
-scrollTopButton.addEventListener('mouseover', function() {
+scrollTopButton.addEventListener('mouseover', function () {
   this.style.background = '#f57c00';
   this.style.transform = 'scale(1.1)';
 });
 
-scrollTopButton.addEventListener('mouseout', function() {
+scrollTopButton.addEventListener('mouseout', function () {
   this.style.background = '#ff9800';
   this.style.transform = 'scale(1)';
 });
@@ -450,7 +450,7 @@ I want to know more about your custards 🍨`;
   const url = `https://wa.me/918240320833?text=${encodeURIComponent(text)}`;
 
   window.open(url, "_blank");
-} 
+}
 
 /* Open QR */
 function openQR(element) {
@@ -475,7 +475,7 @@ function closeQR() {
 /* Close on outside click */
 document.getElementById(
   "qrPopup"
-).addEventListener("click", function(e) {
+).addEventListener("click", function (e) {
 
   if (e.target.id === "qrPopup") {
     closeQR();
