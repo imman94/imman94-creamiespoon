@@ -451,3 +451,33 @@ I want to know more about your custards 🍨`;
 
   window.open(url, "_blank");
 } 
+
+/* Open QR */
+function openQR(element) {
+
+  document.getElementById(
+    "qrPopup"
+  ).style.display = "flex";
+
+  document.getElementById(
+    "popupQR"
+  ).src = element.src;
+}
+
+/* Close QR */
+function closeQR() {
+
+  document.getElementById(
+    "qrPopup"
+  ).style.display = "none";
+}
+
+/* Close on outside click */
+document.getElementById(
+  "qrPopup"
+).addEventListener("click", function(e) {
+
+  if (e.target.id === "qrPopup") {
+    closeQR();
+  }
+});

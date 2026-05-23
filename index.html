@@ -71,6 +71,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <script src="analytics.js" defer></script>
+  <script src="feedbacks.js" defer></script>
 
 
 </head>
@@ -218,7 +219,7 @@
           </div>
           <h3>Butterscotch Custard</h3>
           <p>Rich and creamy butterscotch flavor with a hint of vanilla.</p>
-          <span class="badge">Coming Soon</span>
+          <span class="badge">Newly Added</span>
         </div>
       </div>
     </div>
@@ -239,7 +240,7 @@
   </section>
 
   <!-- TESTIMONIALS SECTION -->
-  <section id="testimonials" class="testimonials section">
+  <!-- <section id="testimonials" class="testimonials section">
     <div class="container">
       <h2>What Our Customers Say</h2>
       <div class="testimonials-grid">
@@ -264,7 +265,40 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
+
+<section id="testimonials" class="testimonials section">
+<h2>What Our Customers Say</h2>
+ <div class="testimonials-marquee">
+
+    <div class="testimonials-track" id="testimonials-container">
+
+    </div>
+
+  </div>
+
+</section>
+ 
+
+  <!-- <section class="feedback section">
+
+    <div class="container feedback-box">
+
+      <h2>🍨 Loved Your Creamie Spoon Experience?</h2>
+
+      <p>
+        Your feedback means a lot to us ❤️
+        Share your experience and help us make every spoon even more special!
+      </p>
+
+      <a href="https://forms.gle/MG8dFZMG72nZoACq7" target="_blank" class="btn btn-primary">
+
+        ✨ Share Your Feedback
+      </a>
+
+    </div>
+
+  </section> -->
 
   <!-- CTA SECTION -->
   <section class="cta-banner">
@@ -399,7 +433,7 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
+  <!-- <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-section">
@@ -428,13 +462,170 @@
           <h4>Business Hours</h4>
           <p>Mon - Sun: 10:00 AM - 10:00 PM<br>Orders close at 8 PM</p>
         </div>
+
+
+      <h4>Customer Feedback</h4>
+
+  <p>
+    Loved your Creamie Spoon experience? 🍨
+    Scan & share your feedback ❤️
+  </p>
+
+  <img
+    src="assets/feedback-qr.png"
+    alt="Customer Feedback QR"
+    class="feedback-qr"
+  >
+
       </div>
       <div class="footer-bottom">
         <p>&copy; 2026 Creamie Spoon. All rights reserved.</p>
         <p>Made with ❤️ in Kolkata | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
       </div>
+
     </div>
-  </footer>
+  </footer> -->
+
+  <footer class="footer">
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <!-- About -->
+      <div class="footer-section">
+        <h4>About Creamie Spoon</h4>
+
+        <p>
+          We deliver premium homemade custards across Kolkata.
+          Fresh, natural, and delicious!
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-section">
+
+        <h4>Quick Links</h4>
+
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+      </div>
+
+      <!-- Social -->
+      <div class="footer-section">
+
+        <h4>Follow Us</h4>
+
+        <div class="social-links">
+
+          <a href="https://instagram.com/creamiespoon"
+             target="_blank"
+             title="Instagram">
+
+            <i class="fab fa-instagram"></i>
+
+          </a>
+
+          <a href="https://facebook.com/creamiespoon"
+             target="_blank"
+             title="Facebook">
+
+            <i class="fab fa-facebook"></i>
+
+          </a>
+
+          <a href="https://wa.me/918240320833"
+             target="_blank"
+             title="WhatsApp">
+
+            <i class="fab fa-whatsapp"></i>
+
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- Business Hours -->
+      <div class="footer-section">
+
+        <h4>Business Hours</h4>
+
+        <p>
+          Mon - Sun: 10:00 AM - 10:00 PM
+          <br>
+          Orders close at 8 PM
+        </p>
+
+      </div>
+
+      <!-- Customer Feedback -->
+      <div class="footer-section feedback-footer">
+
+        <h4>Customer Feedback</h4>
+
+        <div class="feedback-content">
+
+          <div class="feedback-text">
+
+            <p>
+              Loved your Creamie Spoon experience? 🍨
+              <br>
+              Scan & share your feedback ❤️
+            </p>
+
+          </div>
+
+          <img
+            src="assets/feedback-qr.png"
+            alt="Customer Feedback QR"
+            class="feedback-qr"
+            onclick="openQR(this)"
+          />
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div id="qrPopup" class="qr-popup">
+
+  <span class="close-qr"
+        onclick="closeQR()">
+    &times;
+  </span>
+
+  <img
+    id="popupQR"
+    class="popup-qr-img"
+  />
+
+</div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+
+      <p>
+        &copy; 2026 Creamie Spoon.
+        All rights reserved.
+      </p>
+
+      <p>
+        Made with ❤️ in Kolkata |
+        <a href="#">Privacy Policy</a> |
+        <a href="#">Terms & Conditions</a>
+      </p>
+
+    </div>
+
+  </div>
+
+</footer>
 
   <script src="script.js" defer></script>
   <a href="https://wa.me/918240320833" class="whatsapp-float">
