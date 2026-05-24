@@ -836,7 +836,8 @@ body {
 }
 
 .footer-section a {
-  color: #ccc;
+  color: var(--primary-color);
+  /* color: #ccc; */
   text-decoration: none;
   transition: color 0.3s;
 }
