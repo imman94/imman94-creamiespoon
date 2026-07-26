@@ -481,3 +481,7 @@ document.getElementById(
     closeQR();
   }
 });
+
+
+
+
