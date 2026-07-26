@@ -13,7 +13,7 @@ async function loadTestimonials() {
     try {
 
         const response = await fetch(
-            "https://sheetdb.io/api/v1/gwu6ghuvb275e"
+            "https://sheetdb.io/api/v1/e2v7zny9bt2w6"
         );
 
         if (!response.ok) {
