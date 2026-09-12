@@ -1,487 +1,158 @@
-// ===== MENU DATA (SCALABLE) =====
-const menuData = [
-  {
-    name: "Mango Custard",
-    desc: "Rich, creamy custard blended with real mango goodness—smooth, refreshing, and irresistibly delicious in every spoon.",
-    price: 70,
-    img: "assets/mango_c.webp",
-    discount: "🔥 Bestseller"
-  },
-  {
-    name: "Strawberry Custard",
-    desc: "Fresh, juicy strawberries blended into rich creamy, refreshing, and bursting with fruity flavor, perfect for every craving.",
-    price: 70,
-    img: "assets/strawberry_c.webp"
-  },
-  {
-    name: "Kesar Pista Custard",
-    desc: "Rich, creamy custard with aromatic saffron and crunchy pistachios—smooth, royal, and irresistibly indulgent in every spoon.",
-    price: 80,
-    img: "assets/kesarP_c.webp"
-  },
-  {
-    name: "Butterscotch Custard",
-    desc: "Creamy caramel custard with crunchy butterscotch—sweet, rich, and delightful in every bite.",
-    price: 80,
-    img: "assets/buttercotch_c.webp"
-  },
-  {
-    name: "The Ultimate Combo Pack",
-    desc: "Two Mango Custards paired with Strawberry and Kesar Pista, perfectly balanced blend of fruity, creamy & royal indulgence.",
-    price: 269,
-    img: "assets/combo_pak.webp",
-    highlight: true,
-    discount: "Save ₹21"
-  },
-  {
-    name: "The 4 in 1 Bucket Combo Pack",
-    desc: "Can’t pick one? Get all four! A curated blend of Mango, Kesar Pista, Butterscotch & Strawberry Crafted for the perfect balance of flavor and indulgence.",
-    price: 279,
-    img: "assets/4_in_1_combo_pack.webp",
-    highlight: true,
-    discount: "Save ₹21"
-  }
+const WA = "918240320833";
+
+const MENU = [
+  { name: "Mango Custard", desc: "Rich, creamy custard blended with real mango goodness—smooth, refreshing, and irresistibly delicious in every spoon.", price: 70, img: "assets/mango_c.webp", discount: "🔥 Bestseller" },
+  { name: "Strawberry Custard", desc: "Fresh, juicy strawberries blended into rich creamy, refreshing, and bursting with fruity flavor, perfect for every craving.", price: 70, img: "assets/strawberry_c.webp" },
+  { name: "Kesar Pista Custard", desc: "Rich, creamy custard with aromatic saffron and crunchy pistachios—smooth, royal, and irresistibly indulgent in every spoon.", price: 80, img: "assets/kesarP_c.webp" },
+  { name: "Butterscotch Custard", desc: "Creamy caramel custard with crunchy butterscotch—sweet, rich, and delightful in every bite.", price: 80, img: "assets/buttercotch_c.webp" },
+  { name: "The Ultimate Combo Pack", desc: "Two Mango Custards paired with Strawberry and Kesar Pista, perfectly balanced blend of fruity, creamy & royal indulgence.", price: 269, img: "assets/combo_pak.webp", discount: "Save ₹21" },
+  { name: "The 4 in 1 Bucket Combo Pack", desc: "Can’t pick one? Get all four! A curated blend of Mango, Kesar Pista, Butterscotch & Strawberry Crafted for the perfect balance of flavor and indulgence.", price: 279, img: "assets/4_in_1_combo_pack.webp", discount: "Save ₹21" }
 ];
 
-// ===== RENDER MENU =====
+const FLAVORS = [
+  { name: "Mango Custard", desc: "Sweet, creamy mango flavor using seasonal seasonal mangoes.", badge: "Most Popular", img: "assets/mango_c.webp" },
+  { name: "Kesar Pista Custard", desc: "Premium saffron & pistachio blend, perfect for celebrations.", badge: "Premium", img: "assets/kesarP_c.webp" },
+  { name: "Strawberry Custard", desc: "Fresh strawberry flavor with real fruit pieces.", badge: "Fresh", img: "assets/strawberry_c.webp" },
+  { name: "Butterscotch Custard", desc: "Rich and creamy butterscotch flavor with a hint of vanilla.", badge: "Newly Added", img: "assets/buttercotch_c.webp" }
+];
+
+const FAQS = [
+  { q: "How long does delivery take?", a: "We deliver within 30-45 minutes in south Kolkata. Same-day delivery available for orders before 2 PM." },
+  { q: "Are your custards made fresh?", a: "Yes! All custards are made fresh daily in the morning. We don't store or freeze them." },
+  { q: "Do you use artificial flavors?", a: "No! We use 100% natural ingredients. No artificial colors or flavors added." },
+  { q: "Can I customize flavors for bulk orders?", a: "Absolutely! We can create custom recipes for weddings and corporate events." },
+  { q: "What's your delivery area?", a: "We deliver across south Kolkata. Minimum 10+ orders. Extra charges apply for areas beyond 5km." },
+  { q: "Can I pre-order for future dates?", a: "Yes! Pre-orders are available for 30+ orders. Contact us for bulk bookings." }
+];
+
+function order(name, price) {
+  const msg = `Hi Creamie Spoon! 🍨\n\nI'd like to order:\n${name}\nPrice: ₹${price}\n\nPlease confirm availability and delivery time.`;
+  if (typeof gtag !== "undefined") gtag("event", "add_to_cart", { items: [{ item_name: name, price }] });
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, "_blank");
+  closeOrderSheet();
+}
+
+function renderFlavors() {
+  document.getElementById("flavorsGrid").innerHTML = FLAVORS.map(f => `
+    <article class="flavor-card">
+      <div class="zoom"><img src="${f.img}" alt="${f.name}" loading="lazy"></div>
+      <div class="flavor-head"><h3>${f.name}</h3><span class="flavor-badge">${f.badge}</span></div>
+      <p>${f.desc}</p>
+    </article>`).join("");
+}
+
 function renderMenu() {
-  const container = document.getElementById("menuContainer");
-  if (!container) return;
-
-  container.innerHTML = menuData.map(item => `
-    <div class="menu-card ${item.highlight ? 'highlight' : ''}">
-      ${item.tag ? `<span class="tag">${item.tag}</span>` : ""}
-      <img src="${item.img}" alt="${item.name}" loading="lazy">
-      <h3>${item.name}</h3>
-      <p>${item.desc}</p>
-      <div class="price">
-        ₹${item.price}
-        ${item.discount ? `<span class="discount">${item.discount}</span>` : ""}
+  document.getElementById("menuGrid").innerHTML = MENU.map((m, i) => `
+    <article class="menu-card" data-idx="${i}">
+      <div class="img-wrap">
+        <img src="${m.img}" alt="${m.name}" loading="lazy">
+        ${m.discount ? `<span class="menu-badge">${m.discount}</span>` : ""}
       </div>
-      <button class="btn btn-primary" onclick="order('${item.name}', ${item.price})">
-        Add to Order
-      </button>
-    </div>
-  `).join('');
-}
+      <div class="menu-body">
+        <h3>${m.name}</h3>
+        <p>${m.desc}</p>
+        <div class="menu-foot">
+          <span class="menu-price">₹${m.price}</span>
+          <button class="menu-order" data-idx="${i}">Add to Order</button>
+        </div>
+      </div>
+    </article>`).join("");
 
-// CALL ON LOAD
-document.addEventListener("DOMContentLoaded", () => {
-  renderMenu();
-  updateImages(); // important for popup
-});
-
-
-// ===== MOBILE MENU TOGGLE =====
-const menuToggle = document.getElementById('menuToggle');
-const navMenu = document.getElementById('navMenu');
-
-if (menuToggle) {
-  menuToggle.addEventListener('click', function () {
-    navMenu.classList.toggle('active');
-  });
-}
-
-// Close mobile menu when a link is clicked
-document.querySelectorAll('.nav-menu a').forEach(link => {
-  link.addEventListener('click', () => {
-    navMenu.classList.remove('active');
-  });
-});
-
-// ===== SMOOTH SCROLL TO SECTIONS =====
-function scrollToMenu() {
-  const menuSection = document.getElementById("menu");
-  if (menuSection) {
-    menuSection.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  }
-}
-
-function scrollToContact() {
-  const contactSection = document.getElementById("contact");
-  if (contactSection) {
-    contactSection.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  }
-}
-
-// ===== ORDER FUNCTION (WHATSAPP INTEGRATION) =====
-function order(itemName, price) {
-  const message = `Hi Creamie Spoon! 🍨\n\nI'd like to order:\n${itemName}\nPrice: ₹${price}\n\nPlease confirm availability and delivery time.`;
-
-  // Track with Google Analytics
-  if (typeof gtag !== "undefined") {
-    gtag('event', 'add_to_cart', {
-      'items': [{
-        'item_name': itemName,
-        'price': price
-      }]
-    });
-  }
-
-  // Open WhatsApp
-  const whatsappNumber = '918240320833'; // Update with your number
-  const encodedMessage = encodeURIComponent(message);
-  window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
-}
-
-// ===== INSTAGRAM TRACKING =====
-function trackInsta() {
-  if (typeof gtag !== "undefined") {
-    gtag('event', 'view_item', {
-      'content_type': 'social_media',
-      'content_id': 'instagram'
-    });
-  }
-}
-
-// ===== CONTACT FORM HANDLING =====
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  contactForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    // Get form values
-    const name = this.querySelector('input[type="text"]').value;
-    const email = this.querySelector('input[type="email"]').value;
-    const phone = this.querySelector('input[type="tel"]').value;
-    const message = this.querySelector('textarea').value;
-
-    // WhatsApp message
-    const whatsappMessage = `Hi Creamie Spoon!\n\nI'm ${name}.\n\nEmail: ${email}\nPhone: ${phone}\n\nMessage: ${message}`;
-
-    // Track form submission
-    if (typeof gtag !== "undefined") {
-      gtag('event', 'generate_lead', {
-        'value': 0,
-        'currency': 'INR'
-      });
-    }
-
-    // Send via WhatsApp
-    const whatsappNumber = '918240320833'; // Update with your number
-    const encodedMessage = encodeURIComponent(whatsappMessage);
-
-    // Show success message
-    alert('Thank you! We will contact you soon via WhatsApp.');
-    this.reset();
-
-    // Open WhatsApp (optional)
-    // window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
-  });
-}
-
-// ===== PAGE LOAD ANIMATIONS =====
-window.addEventListener('load', function () {
-  // Fade in elements on load
-  const elements = document.querySelectorAll('.section, .hero, .menu-card, .feature-card');
-  elements.forEach((el, index) => {
-    el.style.opacity = '0';
-    setTimeout(() => {
-      el.style.opacity = '1';
-      el.style.transition = 'opacity 0.6s ease-in';
-    }, index * 50);
-  });
-});
-
-// ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver(function (entries) {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
-}, observerOptions);
-
-// Observe all cards and elements
-document.querySelectorAll('.menu-card, .feature-card, .flavor-card, .testimonial-card').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  observer.observe(el);
-});
-
-// ===== LAZY LOADING FOR IMAGES =====
-if ('IntersectionObserver' in window) {
-  const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.dataset.src || img.src;
-        img.classList.add('loaded');
-        observer.unobserve(img);
-      }
+  document.querySelectorAll(".menu-order").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const m = MENU[+btn.dataset.idx];
+      order(m.name, m.price);
     });
   });
-
-  document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-    imageObserver.observe(img);
+  document.querySelectorAll(".menu-card .img-wrap").forEach((el, i) => {
+    el.addEventListener("click", () => openZoom(MENU[i].img, MENU[i].name));
   });
 }
 
-// ===== PHONE NUMBER FORMATTER (OPTIONAL) =====
-function formatPhoneNumber(input) {
-  let value = input.value.replace(/\D/g, '');
-  if (value.length > 10) {
-    value = value.slice(0, 10);
-  }
-  input.value = value;
+function renderFaqs() {
+  document.getElementById("faqGrid").innerHTML = FAQS.map((f, i) => `
+    <div class="faq-item">
+      <span class="num">${String(i + 1).padStart(2, "0")}</span>
+      <div><h3>${f.q}</h3><p>${f.a}</p></div>
+    </div>`).join("");
 }
 
-// Apply formatter to phone inputs
-document.querySelectorAll('input[type="tel"]').forEach(input => {
-  input.addEventListener('input', function () {
-    formatPhoneNumber(this);
-  });
-});
-
-// ===== SCROLL TO TOP BUTTON =====
-const scrollTopButton = document.createElement('button');
-scrollTopButton.innerHTML = '↑';
-scrollTopButton.className = 'scroll-top';
-scrollTopButton.style.cssText = `
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 45px;
-  height: 45px;
-  background: #ff9800;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 24px;
-  display: none;
-  z-index: 999;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transition: all 0.3s;
-`;
-
-document.body.appendChild(scrollTopButton);
-
-window.addEventListener('scroll', function () {
-  if (window.pageYOffset > 300) {
-    scrollTopButton.style.display = 'flex';
-    scrollTopButton.style.alignItems = 'center';
-    scrollTopButton.style.justifyContent = 'center';
-  } else {
-    scrollTopButton.style.display = 'none';
-  }
-});
-
-scrollTopButton.addEventListener('click', function () {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-});
-
-scrollTopButton.addEventListener('mouseover', function () {
-  this.style.background = '#f57c00';
-  this.style.transform = 'scale(1.1)';
-});
-
-scrollTopButton.addEventListener('mouseout', function () {
-  this.style.background = '#ff9800';
-  this.style.transform = 'scale(1)';
-});
-
-
-
-
-// ===== ADVANCED IMAGE POPUP (GALLERY + SWIPE + PINCH) =====
-const popup = document.getElementById("imagePopup");
-const popupImg = document.getElementById("popupImg");
-const closePopup = document.querySelector(".close-popup");
-
-let images = [];
-
-function updateImages() {
-  images = document.querySelectorAll(".flavor-image img, .menu-card img");
-
-  images.forEach((img, index) => {
-    img.style.cursor = "pointer";
-
-    img.onclick = function () {
-      currentIndex = index;
-      showImage();
-      popup.classList.add("active");
-      document.body.classList.add("popup-open");
-    };
+function renderSheet() {
+  document.getElementById("sheetList").innerHTML = MENU.map((m, i) => `
+    <div class="sheet-row" data-idx="${i}">
+      <img src="${m.img}" alt="${m.name}">
+      <div class="info"><div>${m.name}</div><div>₹${m.price}</div></div>
+      <i class="fab fa-whatsapp"></i>
+    </div>`).join("");
+  document.querySelectorAll(".sheet-row").forEach(row => {
+    row.addEventListener("click", () => {
+      const m = MENU[+row.dataset.idx];
+      order(m.name, m.price);
+    });
   });
 }
-let currentIndex = 0;
 
-// OPEN POPUP
-images.forEach((img, index) => {
-  img.style.cursor = "pointer";
-
-  img.addEventListener("click", function () {
-    currentIndex = index;
-    showImage();
-    popup.classList.add("active");
-    document.body.classList.add("popup-open");
-  });
-});
-
-function showImage() {
-  popupImg.src = images[currentIndex].src;
+/* zoom lightbox */
+const zoomOverlay = document.getElementById("zoomOverlay");
+const zoomImgEl = document.getElementById("zoomImg");
+function openZoom(src, alt) {
+  zoomImgEl.src = src;
+  zoomImgEl.alt = alt;
+  zoomOverlay.classList.add("open");
 }
+function closeZoom() { zoomOverlay.classList.remove("open"); }
+zoomOverlay.addEventListener("click", closeZoom);
+document.getElementById("zoomClose").addEventListener("click", closeZoom);
 
-// ===== SWIPE (MOBILE) =====
-let startX = 0;
+/* order sheet */
+const orderSheet = document.getElementById("orderSheet");
+const sheetBackdrop = document.getElementById("sheetBackdrop");
+function toggleOrderSheet() {
+  orderSheet.classList.toggle("open");
+  sheetBackdrop.classList.toggle("open");
+}
+function closeOrderSheet() {
+  orderSheet.classList.remove("open");
+  sheetBackdrop.classList.remove("open");
+}
+document.getElementById("stickyOrder").addEventListener("click", toggleOrderSheet);
+document.getElementById("stickyInfo").addEventListener("click", toggleOrderSheet);
+sheetBackdrop.addEventListener("click", closeOrderSheet);
+document.getElementById("sheetClose").addEventListener("click", closeOrderSheet);
 
-popup.addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
+/* mobile nav */
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
+if (menuToggle) menuToggle.addEventListener("click", () => navMenu.classList.toggle("active"));
+document.querySelectorAll(".nav-menu a").forEach(a => a.addEventListener("click", () => navMenu.classList.remove("active")));
+
+/* scroll progress */
+window.addEventListener("scroll", () => {
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  document.getElementById("scrollProgress").style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
 }, { passive: true });
 
-popup.addEventListener("touchend", (e) => {
-  let endX = e.changedTouches[0].clientX;
+/* reveal on scroll */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("rv-in"); io.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: "0px 0px -60px 0px" });
 
-  if (startX - endX > 50) {
-    nextImage();
-  } else if (endX - startX > 50) {
-    prevImage();
-  }
-}, { passive: true });
-
-function nextImage() {
-  currentIndex = (currentIndex + 1) % images.length;
-  showImage();
-}
-
-function prevImage() {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  showImage();
-}
-
-
-// ===== DESKTOP ARROW NAV =====
-document.addEventListener("keydown", (e) => {
-  if (!popup.classList.contains("active")) return;
-
-  if (e.key === "ArrowRight") nextImage();
-  if (e.key === "ArrowLeft") prevImage();
-  if (e.key === "Escape") closePopupFunc();
-});
-
-// ===== PINCH ZOOM (MOBILE) =====
-let scale = 1;
-let startDist = 0;
-
-popupImg.addEventListener("touchstart", (e) => {
-  if (e.touches.length === 2) {
-    startDist = getDistance(e.touches);
-  }
-}, { passive: true });
-
-popupImg.addEventListener("touchmove", (e) => {
-  if (e.touches.length === 2) {
-    let newDist = getDistance(e.touches);
-    scale = Math.min(Math.max(1, scale * (newDist / startDist)), 3);
-    popupImg.style.transform = `scale(${scale})`;
-    startDist = newDist;
-  }
-}, { passive: true });
-
-function getDistance(touches) {
-  return Math.hypot(
-    touches[0].clientX - touches[1].clientX,
-    touches[0].clientY - touches[1].clientY
-  );
-}
-
-// RESET ZOOM WHEN IMAGE CHANGES
-function resetZoom() {
-  scale = 1;
-  popupImg.style.transform = "scale(1)";
-}
-
-// MODIFY showImage
-function showImage() {
-  popupImg.src = images[currentIndex].src;
-  resetZoom();
-}
-
-// ===== CLOSE =====
-function closePopupFunc() {
-  popup.classList.remove("active");
-  document.body.classList.remove("popup-open");
-  resetZoom();
-}
-
-closePopup.addEventListener("click", closePopupFunc);
-
-popup.addEventListener("click", (e) => {
-  if (e.target === popup) closePopupFunc();
-});
-
+/* whatsapp contact form */
 function sendWhatsApp() {
   const name = document.getElementById("name").value;
   const phone = document.getElementById("phone").value;
   const message = document.getElementById("message").value;
-
-  if (!name || !phone) {
-    alert("Please fill Name and Phone");
-    return;
-  }
-
-  const text = `Hi 👋
-
-Name: ${name}
-Phone: ${phone}
-
-Message:
-${message}
-
-I want to know more about your custards 🍨`;
-
-  const url = `https://wa.me/918240320833?text=${encodeURIComponent(text)}`;
-
-  window.open(url, "_blank");
+  if (!name || !phone) { alert("Please fill Name and Phone"); return; }
+  const text = `Hi 👋\n\nName: ${name}\nPhone: ${phone}\n\nMessage:\n${message}\n\nI want to know more about your custards 🍨`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(text)}`, "_blank");
 }
 
-/* Open QR */
-function openQR(element) {
-
-  document.getElementById(
-    "qrPopup"
-  ).style.display = "flex";
-
-  document.getElementById(
-    "popupQR"
-  ).src = element.src;
-}
-
-/* Close QR */
-function closeQR() {
-
-  document.getElementById(
-    "qrPopup"
-  ).style.display = "none";
-}
-
-/* Close on outside click */
-document.getElementById(
-  "qrPopup"
-).addEventListener("click", function (e) {
-
-  if (e.target.id === "qrPopup") {
-    closeQR();
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  renderFlavors();
+  renderMenu();
+  renderFaqs();
+  renderSheet();
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 });
-
-
-
-
