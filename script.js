@@ -1,4 +1,4 @@
-const WA = "918240320833";
+const WA = "918240320833";  
 
 const MENU = [
   { name: "Mango Custard", desc: "Rich, creamy custard blended with real mango goodness—smooth, refreshing, and irresistibly delicious in every spoon.", price: 70, img: "assets/mango_c.webp", discount: "🔥 Bestseller" },
