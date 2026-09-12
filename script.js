@@ -28,18 +28,18 @@ const menuData = [
   {
     name: "The Ultimate Combo Pack",
     desc: "Two Mango Custards paired with Strawberry and Kesar Pista, perfectly balanced blend of fruity, creamy & royal indulgence.",
-    price: 249,
+    price: 269,
     img: "assets/combo_pak.webp",
     highlight: true,
-    discount: "Save ₹51"
+    discount: "Save ₹21"
   },
   {
     name: "The 4 in 1 Bucket Combo Pack",
     desc: "Can’t pick one? Get all four! A curated blend of Mango, Kesar Pista, Butterscotch & Strawberry Crafted for the perfect balance of flavor and indulgence.",
-    price: 259,
+    price: 279,
     img: "assets/4_in_1_combo_pack.webp",
     highlight: true,
-    discount: "Save ₹41"
+    discount: "Save ₹21"
   }
 ];
 
