@@ -2,10 +2,18 @@
   box-sizing: border-box
 }
 
-:root {
+/* :root {
   --ink: #1A1614;
   --paper: #FAF7F2;
   --accent: #C2410C;
+  --muted: #6F655C;
+  --line: rgba(26, 22, 20, .12)
+} */
+
+:root {
+  --ink: #1A1614;
+  --paper: #F6F3EE;
+  --accent: #0F766E;
   --muted: #6F655C;
   --line: rgba(26, 22, 20, .12)
 }
