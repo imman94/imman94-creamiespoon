@@ -1,4 +1,4 @@
-const WA = "918240320833";  
+const WA = "918240320833";
 
 const MENU = [
   { name: "Mango Custard", desc: "Rich, creamy custard blended with real mango goodness—smooth, refreshing, and irresistibly delicious in every spoon.", price: 70, img: "assets/mango_c.webp", discount: "🔥 Bestseller" },
@@ -33,19 +33,22 @@ function order(name, price) {
 }
 
 function renderFlavors() {
-  document.getElementById("flavorsGrid").innerHTML = FLAVORS.map(f => `
-    <article class="flavor-card">
-      <div class="zoom"><img src="${f.img}" alt="${f.name}" loading="lazy"></div>
+  document.getElementById("flavorsGrid").innerHTML = FLAVORS.map((f, i) => `
+    <article class="flavor-card" data-idx="${i}">
+      <div class="zoom"><img src="${f.img}" alt="${f.name} — Creamie Spoon homemade custard, South Kolkata" loading="lazy"><span class="zoom-hint">🔍 Zoom</span></div>
       <div class="flavor-head"><h3>${f.name}</h3><span class="flavor-badge">${f.badge}</span></div>
       <p>${f.desc}</p>
     </article>`).join("");
+  document.querySelectorAll(".flavor-card .zoom").forEach((el, i) => {
+    el.addEventListener("click", () => openZoom(FLAVORS[i].img, FLAVORS[i].name));
+  });
 }
 
 function renderMenu() {
   document.getElementById("menuGrid").innerHTML = MENU.map((m, i) => `
-    <article class="menu-card" data-idx="${i}">
+    <article class="menu-card" data-idx="${i}" data-highlight="${!!(m.discount && m.price > 200)}">
       <div class="img-wrap">
-        <img src="${m.img}" alt="${m.name}" loading="lazy">
+        <img src="${m.img}" alt="${m.name} — homemade custard, Creamie Spoon South Kolkata" loading="lazy">
         ${m.discount ? `<span class="menu-badge">${m.discount}</span>` : ""}
       </div>
       <div class="menu-body">
