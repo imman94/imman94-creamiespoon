@@ -30,20 +30,22 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <header class="navbar">
-  <div class="navbar-container">
-    <a href="#home" class="logo">
-      <img src="assets/favicon.png" alt="Creamie Spoon" class="logo-img">
-      <span>Creamie Spoon</span>
+  <div class="navbar-container" style="gap:12px;padding:14px 20px">
+    <a href="#home" class="logo" style="flex-shrink:0;min-width:0">
+      <img src="assets/favicon.png" alt="Creamie Spoon" class="logo-img" style="width:32px;height:32px">
+      <span style="font-size:19px;white-space:nowrap">Creamie Spoon</span>
     </a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
     <nav class="nav-menu" id="navMenu">
       <a href="#about" class="nav-link">About</a>
       <a href="#flavors" class="nav-link">Flavors</a>
       <a href="#menu" class="nav-link">Menu</a>
       <a href="#testimonials" class="nav-link">Reviews</a>
       <a href="#contact" class="nav-link">Contact</a>
-      <a href="https://wa.me/918240320833" target="_blank" class="btn btn-dark"><i class="fab fa-whatsapp"></i> Order Now</a>
     </nav>
+    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+      <a href="https://wa.me/918240320833" target="_blank" class="btn btn-dark nav-order-btn"><i class="fab fa-whatsapp"></i> Order Now</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
   </div>
 </header>
 

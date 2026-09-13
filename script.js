@@ -25,9 +25,15 @@ const FAQS = [
   { q: "Can I pre-order for future dates?", a: "Yes! Pre-orders are available for 30+ orders. Contact us for bulk bookings." }
 ];
 
-function order(name, price) {
-  const msg = `Hi Creamie Spoon! 🍨\n\nI'd like to order:\n${name}\nPrice: ₹${price}\n\nPlease confirm availability and delivery time.`;
-  if (typeof gtag !== "undefined") gtag("event", "add_to_cart", { items: [{ item_name: name, price }] });
+let qtyMap = {};
+function getQty(name) { return qtyMap[name] || 1; }
+function setQty(name, qty) { qtyMap[name] = Math.max(1, qty); renderMenu(); renderSheet(); }
+
+function order(name, price, qty) {
+  qty = qty || 1;
+  const total = price * qty;
+  const msg = `Hi Creamie Spoon! 🍨\n\nI'd like to order:\n${name} x ${qty}\nTotal: ₹${total}\n\nPlease confirm availability and delivery time.`;
+  if (typeof gtag !== "undefined") gtag("event", "add_to_cart", { items: [{ item_name: name, price, quantity: qty }] });
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, "_blank");
   closeOrderSheet();
 }
@@ -35,19 +41,28 @@ function order(name, price) {
 function renderFlavors() {
   document.getElementById("flavorsGrid").innerHTML = FLAVORS.map((f, i) => `
     <article class="flavor-card" data-idx="${i}">
-      <div class="zoom"><img src="${f.img}" alt="${f.name} — Creamie Spoon homemade custard, South Kolkata" loading="lazy"><span class="zoom-hint">🔍 Zoom</span></div>
-      <div class="flavor-head"><h3>${f.name}</h3><span class="flavor-badge">${f.badge}</span></div>
-      <p>${f.desc}</p>
+      <div class="zoom">
+        <img src="${f.img}" alt="${f.name} — Creamie Spoon homemade custard, South Kolkata" loading="lazy">
+        <span class="flavor-badge-onimg">${f.badge}</span>
+        <span class="zoom-hint">🔍 Zoom</span>
+        <h3 class="flavor-name-onimg">${f.name}</h3>
+      </div>
+      <div class="flavor-body">
+        <p>${f.desc}</p>
+        <a href="#menu" class="flavor-link">See pricing →</a>
+      </div>
     </article>`).join("");
   document.querySelectorAll(".flavor-card .zoom").forEach((el, i) => {
-    el.addEventListener("click", () => openZoom(FLAVORS[i].img, FLAVORS[i].name));
+    el.addEventListener("click", (e) => { if (e.target.closest("a")) return; openZoom(FLAVORS[i].img, FLAVORS[i].name); });
   });
 }
 
 function renderMenu() {
-  document.getElementById("menuGrid").innerHTML = MENU.map((m, i) => `
+  document.getElementById("menuGrid").innerHTML = MENU.map((m, i) => {
+    const qty = getQty(m.name);
+    return `
     <article class="menu-card" data-idx="${i}" data-highlight="${!!(m.discount && m.price > 200)}">
-      <div class="img-wrap">
+      <div class="img-wrap" style="cursor:zoom-in">
         <img src="${m.img}" alt="${m.name} — homemade custard, Creamie Spoon South Kolkata" loading="lazy">
         ${m.discount ? `<span class="menu-badge">${m.discount}</span>` : ""}
       </div>
@@ -56,18 +71,28 @@ function renderMenu() {
         <p>${m.desc}</p>
         <div class="menu-foot">
           <span class="menu-price">₹${m.price}</span>
-          <button class="menu-order" data-idx="${i}">Add to Order</button>
+          <div class="menu-order-row">
+            <div class="qty-stepper">
+              <button class="qty-dec" data-idx="${i}">−</button>
+              <span>${qty}</span>
+              <button class="qty-inc" data-idx="${i}">+</button>
+            </div>
+            <button class="menu-order" data-idx="${i}">Add to Order</button>
+          </div>
         </div>
       </div>
-    </article>`).join("");
+    </article>`;
+  }).join("");
 
   document.querySelectorAll(".menu-order").forEach(btn => {
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
       const m = MENU[+btn.dataset.idx];
-      order(m.name, m.price);
+      order(m.name, m.price, getQty(m.name));
     });
   });
+  document.querySelectorAll(".qty-inc").forEach(btn => btn.addEventListener("click", (e) => { e.stopPropagation(); const m = MENU[+btn.dataset.idx]; setQty(m.name, getQty(m.name) + 1); }));
+  document.querySelectorAll(".qty-dec").forEach(btn => btn.addEventListener("click", (e) => { e.stopPropagation(); const m = MENU[+btn.dataset.idx]; setQty(m.name, getQty(m.name) - 1); }));
   document.querySelectorAll(".menu-card .img-wrap").forEach((el, i) => {
     el.addEventListener("click", () => openZoom(MENU[i].img, MENU[i].name));
   });
@@ -82,18 +107,25 @@ function renderFaqs() {
 }
 
 function renderSheet() {
-  document.getElementById("sheetList").innerHTML = MENU.map((m, i) => `
+  document.getElementById("sheetList").innerHTML = MENU.map((m, i) => {
+    const qty = getQty(m.name);
+    return `
     <div class="sheet-row" data-idx="${i}">
       <img src="${m.img}" alt="${m.name}">
       <div class="info"><div>${m.name}</div><div>₹${m.price}</div></div>
-      <i class="fab fa-whatsapp"></i>
-    </div>`).join("");
-  document.querySelectorAll(".sheet-row").forEach(row => {
-    row.addEventListener("click", () => {
-      const m = MENU[+row.dataset.idx];
-      order(m.name, m.price);
-    });
-  });
+      <div class="sheet-right">
+        <div class="sheet-qty">
+          <button class="sheet-dec" data-idx="${i}">−</button>
+          <span>${qty}</span>
+          <button class="sheet-inc" data-idx="${i}">+</button>
+        </div>
+        <button class="sheet-order-btn" data-idx="${i}"><i class="fab fa-whatsapp"></i></button>
+      </div>
+    </div>`;
+  }).join("");
+  document.querySelectorAll(".sheet-order-btn").forEach(btn => btn.addEventListener("click", () => { const m = MENU[+btn.dataset.idx]; order(m.name, m.price, getQty(m.name)); }));
+  document.querySelectorAll(".sheet-inc").forEach(btn => btn.addEventListener("click", () => { const m = MENU[+btn.dataset.idx]; setQty(m.name, getQty(m.name) + 1); }));
+  document.querySelectorAll(".sheet-dec").forEach(btn => btn.addEventListener("click", () => { const m = MENU[+btn.dataset.idx]; setQty(m.name, getQty(m.name) - 1); }));
 }
 
 /* zoom lightbox */
