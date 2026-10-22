@@ -6,8 +6,8 @@
   const DELAY = 1500;
   const WA = "918240320833";
   const COMBOS = [
-    { name: "The Ultimate Combo Pack", desc: "2 Mango + Strawberry + Kesar Pista", price: 269, save: "Save ₹21", img: "assets/combo_pak.webp" },
-    { name: "The 4 in 1 Bucket Combo Pack", desc: "Mango, Kesar Pista, Butterscotch & Strawberry", price: 279, save: "Save ₹21", img: "assets/4_in_1_combo_pack.webp" }
+    { name: "The Ultimate Combo Pack", desc: "2 Mango + Strawberry + Kesar Pista", price: 319, save: "Save ₹7", img: "assets/combo_pak.webp" },
+    { name: "The 4 in 1 Bucket Combo Pack", desc: "Mango, Kesar Pista, Butterscotch & Strawberry", price: 329, save: "Save ₹7", img: "assets/4_in_1_combo_pack.webp" }
   ];
 
   const css = `
